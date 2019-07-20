@@ -9,9 +9,9 @@ import Data.AddressBook (showAddress, showEntry)
 
 main :: Effect Unit
 main = do
+  log "AddressBook Test"
   assert (1 == 2)
   let address = { street: "123 fake st", city: "fake city", state: "ca" }
   assert (showAddress address == "123 fake st, fake city: ca")
   let entry = { firstName: "John", lastName: "Smith", address: address }
   assert (showEntry entry == "Smith, John: 123 fake st, fake city: ca")
-  log "Pass asserts"

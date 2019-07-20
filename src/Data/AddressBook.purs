@@ -2,9 +2,8 @@ module Data.AddressBook where
 
 import Prelude
 import Control.Plus (empty)
--- import Data.List (List(..), filter, head)
-import Data.List (List(..))
--- import Data.Maybe (Maybe)
+import Data.List (List(..), filter, head)
+import Data.Maybe (Maybe)
 
 type Address = {
   street :: String,
@@ -32,5 +31,15 @@ emptyBook = empty
 
 insertEntry :: Entry -> AddressBook -> AddressBook
 insertEntry entry book = Cons entry book
--- same as point free form below
+-- same as point free form below (same function inputs on lhs and rhs or = )
 -- insertEntry = Cons
+
+--filter :: (Entry -> Boolean) -> AddressBook -> AddressBook
+--head :: AddressBook -> Maybe Entry
+--findEntry :: String -> String -> AddressBook -> Maybe Entry
+
+findEntry firstName lastName book = head $ filter filterEntry book
+  where
+    filterEntry :: Entry -> Boolean
+    filterEntry entry = entry.firstName == firstName
+      && entry.lastName == lastName
